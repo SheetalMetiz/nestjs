@@ -1,5 +1,6 @@
-import { Controller, Get, Body, Post} from '@nestjs/common';
+import { Controller, Get, Body, Post, Req} from '@nestjs/common';
 import { AppService } from './app.service';
+import { WebhookOperation } from '@shopify/shopify-api';
 
 @Controller()
 export class AppController {
@@ -34,13 +35,26 @@ export class AppController {
   }
 
   @Get('products')
-  index(){
-    const all_products =  this.appService.findAll();
-    return all_products
+  async index(@Body() @Req() req:any){
+    // const all_products =  this.appService.findAll();
+    console.log('@Req()@Req()',req)
+    if (req) {
+      // body is ignored by NestJS -> get raw body from request
+      // const raw = await rawbody(req);
+      // const text = raw.toString().trim();
+      console.log('body:', req);
+    } 
+    else{
+      console.log('fdgjfdhgkjdfhgkjdfhgjkhdfjk')
+    }
+    
+    
+    // return all_products
   }
 
   @Get('orders')
   orderindex(){
+    console.log('its working')
     const all_products =  this.appService.findOrderAll();
     return all_products
   }
@@ -57,3 +71,5 @@ export class AppController {
     return this.appService.getHello();
   }
 }
+
+
