@@ -4,7 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ShopifyCoreModule } from '@nestjs-shopify/core';
 import { ApiVersion } from '@shopify/shopify-api';
-
+import { CustomersCreateWebhookHandler } from './customer/customers-create.webhook-handler';
+import { ShopifyWebhooksModule } from '@nestjs-shopify/webhooks';
 
 @Module({
   imports: [
@@ -16,10 +17,12 @@ import { ApiVersion } from '@shopify/shopify-api';
       isEmbeddedApp: true,
       scopes: ['read_products','write_products','read_customers'],
       sessionStorage:''
-    
-    })
+    }),
+    ShopifyWebhooksModule.forRoot({
+      path: '/shopify-webhooks',
+    }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService,CustomersCreateWebhookHandler],
 })
 export class AppModule {}
