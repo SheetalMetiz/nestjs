@@ -34,10 +34,11 @@ export class AppController {
     return all_products
   }
 
- @Get('products')
+ @Post('products')
   async index(@Body() @Req() req: RawBodyRequest<Request>){
 //     const all_products =  this.appService.findAll();
     console.log('@Req()@Req()',req)
+    console.log('@Req()@Req()', @Req() req)
     return req
   }
 
