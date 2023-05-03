@@ -35,7 +35,7 @@ export class AppController {
   }
 // RawBodyRequest<Request>
  @Post('products')
-  async index(@Body() @Req() req:RawBodyRequest<Request>){
+  async index(@Body() @Req() req:any){
 //     const all_products =  this.appService.findAll();
    
     console.log('@Req()@Req()',req)
