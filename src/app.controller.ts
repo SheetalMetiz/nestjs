@@ -39,7 +39,7 @@ export class AppController {
 //     const all_products =  this.appService.findAll();
    
     console.log('@Req()@Req()',req)
-    var data = JSON.parse(req)
+    var data = JSON.parse(JSON.stringify(req))
     return data
   }
 
